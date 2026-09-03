@@ -686,7 +686,7 @@
                 <h2 class="section-title">About Me</h2>
                 <div class="about-text">
                     <p class="about-lead">
-                        I was the <strong>World Model Tech Lead</strong> at <a href="#experience" style="font-weight: 700; color: var(--accent);">AFARI (MEGVII)</a>, working on <strong>world models for autonomous driving</strong>.
+                        I am the <strong>World Model Tech Lead</strong> at <a href="#experience" style="font-weight: 700; color: var(--accent);">AFARI (MEGVII)</a>, working on <strong>world models for autonomous driving</strong>.
                     </p>
                     <p>
                         I focus on turning cutting-edge research into production systems, enabling applications such as <strong>closed-loop simulation</strong>, <strong>synthetic data generation</strong>, and <strong>closed-loop training</strong>.
@@ -708,7 +708,15 @@
                         <tbody>
                             <tr class="news-row">
                                 <td class="news-date">2026/08</td>
-                                <td class="news-desc">🚀 Released <a href="https://arxiv.org/abs/2608.22187"><strong>BehaviorWorldGen</strong></a> and <a href="https://arxiv.org/abs/2608.16234"><strong>GaussianDWM++</strong></a> on arXiv.</td>
+                                <td class="news-desc">📊 <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7362483"><strong>IsoWeatherBench</strong></a> preprint (adverse-weather video-gen benchmark) posted on SSRN.</td>
+                            </tr>
+                            <tr class="news-row">
+                                <td class="news-date">2026/08</td>
+                                <td class="news-desc">🚀 Released the <strong>AFARI World Model</strong>: <a href="https://behaviorworldgen.github.io/"><strong>BehaviorWorldGen</strong></a>.</td>
+                            </tr>
+                            <tr class="news-row">
+                                <td class="news-date">2026/08</td>
+                                <td class="news-desc">📄 Submitted <a href="https://arxiv.org/abs/2608.16234"><strong>GaussianDWM++</strong></a> to <strong>TPAMI</strong>.</td>
                             </tr>
                             <tr class="news-row">
                                 <td class="news-date">2026/06</td>
@@ -738,7 +746,7 @@
                     <span class="research-group-icon" aria-hidden="true"><i class="fa-solid fa-earth-asia"></i></span>
                     <span class="research-group-index">01 · Driving Intelligence</span>
                     <h3 class="research-group-heading">World Models &amp; Scene Generation</h3>
-                    <span class="research-group-count">3</span>
+                    <span class="research-group-count">4</span>
                     <p class="research-group-description">Controllable, behavior-aware world models and generative 3D scenes for closed-loop autonomous-driving simulation, data generation, and training.</p>
                 </div>
                 <div class="research-group-publications">
@@ -767,6 +775,22 @@
                             </div>
                             <div class="pub-authors">Jiaqi Wang, Zhuo Zhang, Haining Guan, Tingguang Zhou, Haowen Cui, ChuanYe Wang, Zhongyang Zhu, Yulong Zheng, Xuefeng Chen, Zhen Yang, Tianchen Deng, Feiyang Tan, Xiwu Chen, Hangning Zhou, Bo Dai, Lixia Shen, Xiyang Wang, <span class="me">Jiajun Zhu</span><span class="author-role">Project Lead · Corresponding</span></div>
                             <div class="pub-abstract">Closes the loop between action models (VLA / end-to-end planners) and world simulators through controllable, behavior-aware structured world generation, enforcing consistent agent–ego interaction for balanced and reliable closed-loop rollouts.</div>
+                        </div>
+                    </div>
+
+                    <!-- IsoWeatherBench (text, SSRN preprint, under submission) -->
+                    <div class="pub-item pub-text">
+                        <div class="pub-details">
+                            <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7362483">IsoWeatherBench: An Iso-Severity Benchmark for Adverse-Weather Video Generators with a Physically-Calibrated Visibility Axis</a></div>
+                            <div class="pub-meta-row">
+                                <div class="tag-row"><span class="badge tag-conf submission">Under Review</span></div>
+                                <div class="pub-actions">
+                                    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7362483" class="btn-link"><i class="far fa-file-pdf"></i> Paper</a>
+                                    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7362483" class="btn-link"><i class="fas fa-globe"></i> SSRN</a>
+                                </div>
+                            </div>
+                            <div class="pub-authors">Baocheng Geng, Bo Dai, <span class="me">Jiajun Zhu</span></div>
+                            <div class="pub-abstract">An iso-severity benchmark that places adverse-weather video generators on a physically-calibrated visibility axis, revealing that apparent gains often reflect milder generated weather rather than higher quality — evaluated on nuScenes for autonomous-driving perception.</div>
                         </div>
                     </div>
 
@@ -801,7 +825,7 @@
                                     <a href="https://patchscene.github.io/" class="btn-link"><i class="fas fa-globe"></i> Project</a>
                                 </div>
                             </div>
-                            <div class="pub-authors">Qingdong Xu, <span class="me">Jiajun Zhu</span>, Shilin Zhu, Xinjing He, Chao Lu, Huanran Wang, Jiyao Zhang</div>
+                            <div class="pub-authors">Qingdong Xu*, <span class="me">Jiajun Zhu</span><span class="author-role">* Co-first Author</span>, Shilin Zhu, Xinjing He, Chao Lu, Huanran Wang, Jiyao Zhang</div>
                             <div class="pub-abstract">A patch-based voxel diffusion model that scales generative completion to large-scale 3D scenes for autonomous driving.</div>
                         </div>
                     </div>
@@ -820,16 +844,12 @@
                 </div>
                 <div class="research-group-publications">
 
-                    <!-- NBV-Diffusion (text, under submission at RCIM; SSRN preprint) -->
+                    <!-- NBV-Diffusion (text, under submission at RCIM; no public link yet) -->
                     <div class="pub-item pub-text">
                         <div class="pub-details">
-                            <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7362483">NBV-Diffusion: Generative Next-Best-View Planning for Robot-Assisted 3D Scanning</a></div>
+                            <div class="pub-title">NBV-Diffusion: Generative Next-Best-View Planning for Robot-Assisted 3D Scanning</div>
                             <div class="pub-meta-row">
                                 <div class="tag-row"><span class="badge tag-conf submission">RCIM · Under Review</span></div>
-                                <div class="pub-actions">
-                                    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7362483" class="btn-link"><i class="far fa-file-pdf"></i> Paper</a>
-                                    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7362483" class="btn-link"><i class="fas fa-globe"></i> SSRN</a>
-                                </div>
                             </div>
                             <div class="pub-authors">Wenqin Liu, <span class="me">Jiajun Zhu</span>, et al.</div>
                             <div class="pub-abstract">A generative diffusion framework for next-best-view planning in robot-assisted 3D scanning, predicting informative viewpoints to achieve complete, high-quality 3D reconstructions.</div>
@@ -882,11 +902,11 @@
                         <img src="images/megvii.png" alt="MEGVII logo">
                     </div>
                     <div class="experience-copy">
-                        <h3 class="experience-company">AFARI · MEGVII</h3>
+                        <h3 class="experience-company">MEGVII</h3>
                         <p class="experience-role">World Model Tech Lead</p>
                         <p class="experience-note">Led world models for autonomous driving — closed-loop simulation, synthetic data generation, and closed-loop training.</p>
                     </div>
-                    <div class="experience-period">2023 – 2026</div>
+                    <div class="experience-period">2023 – Present</div>
                 </article>
             </div>
         </section>
