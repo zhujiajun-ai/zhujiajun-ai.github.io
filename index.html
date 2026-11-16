@@ -457,9 +457,15 @@
         }
         /* Text-only entry: no teaser column */
         .pub-item.pub-text { grid-template-columns: 1fr; }
-        /* Featured entry: teaser banner stacked on top */
+        /* Featured entry: paper details beside the media */
         .pub-item.pub-featured {
-            grid-template-columns: 1fr;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 34%);
+            grid-template-areas:
+                "title media"
+                "details media"
+                "abstract abstract";
+            grid-template-rows: auto 1fr auto;
+            gap: 1rem 1.5rem;
             background: linear-gradient(180deg, rgba(var(--group-rgb), 0.06), rgba(255, 255, 255, 0.95) 60%);
             border-color: rgba(var(--group-rgb), 0.3);
         }
@@ -477,12 +483,26 @@
             align-items: center;
         }
         .pub-image-wrapper:hover { transform: scale(1.01); box-shadow: var(--shadow-md); }
-        .pub-item.pub-featured .pub-image-wrapper {
-            aspect-ratio: auto;
-            max-height: 340px;
-            margin-bottom: 1.1rem;
+        @media (max-width: 900px) {
+            .pub-item.pub-featured {
+                grid-template-columns: minmax(0, 1fr);
+                grid-template-areas: "title" "details" "media" "abstract";
+                grid-template-rows: auto;
+            }
         }
-        .pub-item.pub-featured .pub-image { max-height: 340px; padding: 0.6rem; }
+        .pub-media {
+            grid-area: media;
+            align-self: center;
+            justify-self: center;
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        video.pub-media { max-width: 360px; aspect-ratio: 16 / 9; }
+        img.pub-media { max-width: 248px; }
+        .pub-featured > .pub-details { grid-area: details; }
+        .pub-featured > .pub-abstract { grid-area: abstract; margin: 0; }
         .pub-image { width: 100%; height: 100%; display: block; object-fit: contain; }
 
         .pub-details { display: flex; flex-direction: column; max-width: 960px; }
@@ -493,7 +513,11 @@
             margin-bottom: 0.45rem;
             line-height: 1.3;
         }
-        .pub-item.pub-featured .pub-title { font-size: 1.4rem; }
+        .pub-item.pub-featured > .pub-title {
+            grid-area: title;
+            margin-bottom: 0;
+            font-size: 1.4rem;
+        }
         .pub-title a:hover { color: var(--group-color); text-decoration: underline; }
         .pub-slogan {
             display: flex;
@@ -707,6 +731,10 @@
                     <table class="news-table">
                         <tbody>
                             <tr class="news-row">
+                                <td class="news-date">2026/11</td>
+                                <td class="news-desc">📄 Submitted <strong>Representation Reconstruction for End-to-End Tuning with Latent Diffusion Models</strong> to <strong>CVPR 2027</strong>.</td>
+                            </tr>
+                            <tr class="news-row">
                                 <td class="news-date">2026/08</td>
                                 <td class="news-desc">📊 <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7362483"><strong>IsoWeatherBench</strong></a> preprint (adverse-weather video-gen benchmark) posted on SSRN.</td>
                             </tr>
@@ -746,20 +774,17 @@
                     <span class="research-group-icon" aria-hidden="true"><i class="fa-solid fa-earth-asia"></i></span>
                     <span class="research-group-index">01 · Driving Intelligence</span>
                     <h3 class="research-group-heading">World Models &amp; Scene Generation</h3>
-                    <span class="research-group-count">4</span>
+                    <span class="research-group-count">5</span>
                     <p class="research-group-description">Controllable, behavior-aware world models and generative 3D scenes for closed-loop autonomous-driving simulation, data generation, and training.</p>
                 </div>
                 <div class="research-group-publications">
 
                     <!-- Featured: BehaviorWorldGen -->
                     <div class="pub-item pub-featured">
-                        <div class="pub-image-wrapper">
-                            <img src="images/behaviorworldgen.jpg" alt="BehaviorWorldGen closed-loop overview" class="pub-image">
+                        <div class="pub-title">
+                            <a href="https://behaviorworldgen.github.io/">BehaviorWorldGen: Closing the Loop between Action Models and World Simulators via Controllable Behavior-Aware Structured World Generation</a>
                         </div>
                         <div class="pub-details">
-                            <div class="pub-title">
-                                <a href="https://behaviorworldgen.github.io/">BehaviorWorldGen: Closing the Loop between Action Models and World Simulators via Controllable Behavior-Aware Structured World Generation</a>
-                            </div>
                             <div class="pub-slogan">
                                 <span class="pub-slogan-text">Flagship of the <strong>AFARI World Model Team</strong> — an interaction-consistent closed loop between action models and world simulators.</span>
                             </div>
@@ -774,7 +799,21 @@
                                 </div>
                             </div>
                             <div class="pub-authors">Jiaqi Wang, Zhuo Zhang, Haining Guan, Tingguang Zhou, Haowen Cui, ChuanYe Wang, Zhongyang Zhu, Yulong Zheng, Xuefeng Chen, Zhen Yang, Tianchen Deng, Feiyang Tan, Xiwu Chen, Hangning Zhou, Bo Dai, Lixia Shen, Xiyang Wang, <span class="me">Jiajun Zhu</span></div>
-                            <div class="pub-abstract">Closes the loop between action models (VLA / end-to-end planners) and world simulators through controllable, behavior-aware structured world generation, enforcing consistent agent–ego interaction for balanced and reliable closed-loop rollouts.</div>
+                        </div>
+                        <video class="pub-media" controls playsinline preload="metadata" aria-label="BehaviorWorldGen animal rollouts comparison">
+                            <source src="videos/animal-rollouts-comparison-compressed.mp4" type="video/mp4">
+                            <a href="videos/animal-rollouts-comparison-compressed.mp4">Download the comparison video</a>
+                        </video>
+                        <div class="pub-abstract">Closes the loop between action models (VLA / end-to-end planners) and world simulators through controllable, behavior-aware structured world generation, enforcing consistent agent–ego interaction for balanced and reliable closed-loop rollouts.</div>
+                    </div>
+
+                    <!-- REPR -->
+                    <div class="pub-item pub-text">
+                        <div class="pub-details">
+                            <div class="pub-title">Representation Reconstruction for End-to-End Tuning with Latent Diffusion Models</div>
+                            <div class="pub-meta-row">
+                                <div class="tag-row"><span class="badge tag-conf">CVPR 2027</span><span class="badge tag-conf submission">Under Review</span></div>
+                            </div>
                         </div>
                     </div>
 
@@ -801,7 +840,7 @@
                                 <a href="https://arxiv.org/abs/2608.16234">GaussianDWM++: Language-Grounded 3D Gaussian Driving World Model for Unified Scene Understanding, Editing, and Multi-Modal Generation</a>
                             </div>
                             <div class="pub-meta-row">
-                                <div class="tag-row"><span class="badge tag-conf submission">TPAMI · Under Review</span><span class="badge tag-highlight"><i class="fas fa-star"></i> Project Lead</span></div>
+                                <div class="tag-row"><span class="badge tag-conf">TPAMI</span><span class="badge tag-conf submission">Under Review</span><span class="badge tag-highlight"><i class="fas fa-star"></i> Project Lead</span></div>
                                 <div class="pub-actions">
                                     <a href="https://arxiv.org/abs/2608.16234" class="btn-link"><i class="far fa-file-pdf"></i> Paper</a>
                                     <a href="https://arxiv.org/abs/2608.16234" class="btn-link"><i class="fas fa-globe"></i> arXiv</a>
@@ -812,12 +851,12 @@
                         </div>
                     </div>
 
-                    <!-- PatchScene (text) -->
-                    <div class="pub-item pub-text">
+                    <!-- PatchScene -->
+                    <div class="pub-item pub-featured">
+                        <div class="pub-title">
+                            <a href="https://patchscene.github.io/">PatchScene: Patch-based Voxel Diffusion for Large-Scale Scene Completion</a>
+                        </div>
                         <div class="pub-details">
-                            <div class="pub-title">
-                                <a href="https://patchscene.github.io/">PatchScene: Patch-based Voxel Diffusion for Large-Scale Scene Completion</a>
-                            </div>
                             <div class="pub-meta-row">
                                 <div class="tag-row"><span class="badge tag-conf">CVPR 2026</span><span class="badge tag-highlight"><i class="fas fa-star"></i> Project Lead · Co-first Author</span></div>
                                 <div class="pub-actions">
@@ -826,8 +865,9 @@
                                 </div>
                             </div>
                             <div class="pub-authors">Qingdong Xu*, <span class="me">Jiajun Zhu</span>*, Shilin Zhu, Xinjing He, Chao Lu, Huanran Wang, Jiyao Zhang</div>
-                            <div class="pub-abstract">A patch-based voxel diffusion model that scales generative completion to large-scale 3D scenes for autonomous driving.</div>
                         </div>
+                        <img class="pub-media" width="1268" height="1098" src="images/patchscene-comparison.png" alt="PatchScene comparison of input scans, ground truth, and predictions across three scenes" loading="lazy" decoding="async">
+                        <div class="pub-abstract">A patch-based voxel diffusion model that scales generative completion to large-scale 3D scenes for autonomous driving.</div>
                     </div>
 
                 </div>
@@ -849,7 +889,7 @@
                         <div class="pub-details">
                             <div class="pub-title">NBV-Diffusion: Generative Next-Best-View Planning for Robot-Assisted 3D Scanning</div>
                             <div class="pub-meta-row">
-                                <div class="tag-row"><span class="badge tag-conf submission">RCIM · Under Review</span></div>
+                                <div class="tag-row"><span class="badge tag-conf">RCIM</span><span class="badge tag-conf submission">Under Review</span></div>
                             </div>
                             <div class="pub-authors">Wenqin Liu, <span class="me">Jiajun Zhu</span>, et al.</div>
                             <div class="pub-abstract">A generative diffusion framework for next-best-view planning in robot-assisted 3D scanning, predicting informative viewpoints to achieve complete, high-quality 3D reconstructions.</div>
